@@ -39,10 +39,19 @@ def find_A_B_matrices( eq_points):
         [sp.diff(x2_dot, u)]
     ])
     A_matrices, B_matrices = [], []
+    for eq_point in eq_points:
+        x1_eq, x2_eq, u_eq = eq_point
+
+        
+        A_numeric = A_matrix.subs({x1: x1_eq, x2: x2_eq, u: u_eq})
+        B_numeric = B_matrix.subs({x1: x1_eq, x2: x2_eq, u: u_eq})
+        
+        
+        A_matrices.append(A_numeric)
+        B_matrices.append(B_numeric)
     
-    ###### WRITE YOUR CODE HERE ################
     
-    ############################################
+    
     
     return A_matrices,B_matrices
 
@@ -79,6 +88,10 @@ def compute_lqr_gain(jacobians_A, jacobians_B):
     R = np.array([1])  # Control weighting matrix
 
     ###### WRITE YOUR CODE HERE ################
+    A=jacobians_A[0]
+    b=jacobians_B[0]
+    
+    
 
     ############################################
     return K
